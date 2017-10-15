@@ -1,12 +1,25 @@
-function Word(word) {
+
+
+var wordArray = [];
+
+var Word = function(word) {
   this.word = word;
+  wordArray.push(this.word);
 }
 
-Word.prototype.printInfo = function() {
-  console.log("Word: " + this.word);
-};
+// Word.prototype.push = function() {
+//   wordArray.push(this.word);
+// };
 
-// var newWord = new Word(answers.word);
-var newWord = new Word("chickenBeak");
+var chicken = new Word("chicken");
+var backhoe = new Word("backhoe");
+var lollapalooza = new Word("lollapalooza");
+var bulky = new Word("bulky");
 
-newWord.printInfo();
+// chicken.push();
+// backhoe.push();
+// lollapalooza.push();
+
+var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+
+module.exports = randomWord;

@@ -1,17 +1,14 @@
 var inquirer = require('inquirer');
 
+var currentWord = "";
+var guesses = 10;
+var lettersGuessed = [];
 
-var questions = [
-  {
-    type: 'input',
-    name: 'letter',
-    message: 'Please select a letter.'
-  }
-];
 
-inquirer.prompt(questions).then(function (answers) {
-  console.log(JSON.stringify(answers, null, '  '));
-});
+function setWord() {
+  currentWord = randomWord;
+}
+
 
 
 inquirer.prompt({
@@ -23,7 +20,7 @@ inquirer.prompt({
 
 
 function letterGuessCallback (answers) {
-  // Create an instance of the WeatherAdmin. Remember WeatherAdmin is a constructor! Not an object.
+
   var myAdmin = new WeatherAdmin(weatherSearchCallback);
 
   if (answers.loginType === "admin") {
@@ -42,4 +39,10 @@ function letterGuessCallback (answers) {
       myAdmin.newUserSearch(answers.name, answers.location, weatherSearchCallback);
     })
   }
+}
+
+
+
+function playAgain() {
+  
 }
