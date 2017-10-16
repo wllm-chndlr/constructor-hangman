@@ -13,8 +13,11 @@ var Word = function(word) {
 
 var chicken = new Word("chicken");
 var backhoe = new Word("backhoe");
-var lollapalooza = new Word("lollapalooza");
+var pangea = new Word("pangea");
 var bulky = new Word("bulky");
+var turnstile = new Word("turnstile");
+var mongolia = new Word("mongolia");
+
 
 // chicken.push();
 // backhoe.push();
