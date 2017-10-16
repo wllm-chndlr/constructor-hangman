@@ -7,7 +7,7 @@ function Letters() {
     blankCurrentWord += '_ ';
   };
   // randomWord = randomWord;
-  console.log(randomWord);
+  // console.log(randomWord);
   console.log(blankCurrentWord);
 }
 

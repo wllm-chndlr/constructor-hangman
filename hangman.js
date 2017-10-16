@@ -1,5 +1,6 @@
 var inquirer = require('inquirer');
 var Letters = require('./Letter.js');
+var randomWord = require("./Word.js");
 var fs = require("fs");
 
 var randomWord;
@@ -9,7 +10,6 @@ var lettersGuessed = [];
 var allLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 
-
 // function setWord() {
 //   // guessWord = randomWord;
 //   Letters();
@@ -17,51 +17,76 @@ var allLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p
 // setWord();
 
 
-inquirer.prompt(
-  // {
-  //   type: 'confirm',
-  //   name: 'playGame',
-  //   message: 'Quieres jugar?'
-  // },
+console.log(randomWord);
+
+inquirer.prompt([
+  {
+    type: 'confirm',
+    name: 'playGame',
+    message: 'Quieres jugar?'
+  },
   {
     type: 'input',
     name: 'letter',
-    message: 'Please select a letter, Johnny Depp.'
+    message: 'Please select a letter.'
   }
-)
+])
 .then(letterGuessCallback);
 
+function swapLetter(str, i, userGuess) {
+  if(i > str.length-1) {
+    return str;
+  }
+  return str.substr(0, i) + userGuess + str.substr(i + 1);
+}
 
 function letterGuessCallback (answers) {
 
-  var logGuess =
-  "\n******************\nLetters guessed: " + answers.letter;
+  var correct = false;
+  var userGuess = answers.letter;
 
-  lettersGuessed.push(answers.letter);
-
-  fs.appendFile("guessLog.txt", logGuess, function(error) {
+  if (answers.playGame) {
+    
+    var logGuess =
+    "\n******************\nLetters guessed: " + answers.letter;
   
-    if (error) {
-      return console.log(error);
-    }
-
-    else {
-    console.log("guessLog.txt was updated!");
-    }
+    lettersGuessed.push(answers.letter);
   
-  });
+    fs.appendFile("guessLog.txt", logGuess, function(error) {
+    
+      if (error) {
+        return console.log(error);
+      }
+  
+      else {
+      console.log("guessLog.txt was updated!");
+      }
+    
+    });
+  
+    // console.log(lettersGuessed);
 
-  console.log(lettersGuessed);
+  }
 
-  // if letter in word:
+  else {
+    console.log("Well, screw you then!");
+  }
 
-  // for (var i = 0; i < randomWord.length; i++) {
-  //   if (answers.letter === randomWord[i]) {
-  //     console.log("Yeeeeeeeeeehaw!!")
-  //     // guessWord = swapLetter(guessWord, i, userInput);
-  //     // correct = true;
-  //   }
-  // }
+  for (var i = 0; i < randomWord.length; i++) {
+    if (answers.letter === randomWord[i]) {
+      console.log("Yeeeeeeeeeehaw!!");
+      correct = true;
+      // guessWord = swapLetter(guessWord, i, userGuess);
+    }
+    // console.log(guessWord);
+  }
+
+  if (!correct) {
+    console.log("Sorry, you're a bad guesser.");
+    console.log("You have " + guesses + " guesses remaining.");
+    console.log(lettersGuessed);
+    guesses--;
+  }
 
 
   // if (lettersGuessed.indexOf(answers.letter) != -1) {
@@ -69,10 +94,6 @@ function letterGuessCallback (answers) {
   // }
   
 
-  // else if:
-
-
-  // else:
 
 }
 
