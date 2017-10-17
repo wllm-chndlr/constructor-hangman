@@ -27,3 +27,145 @@ Letters guessed: k
 Letters guessed: q
 ******************
 Letters guessed: f
+******************
+Letters guessed: p
+******************
+Letters guessed: a
+******************
+Letters guessed: r
+******************
+Letters guessed: t
+******************
+Letters guessed: r
+******************
+Letters guessed: m
+******************
+Letters guessed: x
+******************
+Letters guessed: b
+******************
+Letters guessed: a
+******************
+Letters guessed: d
+******************
+Letters guessed: d
+******************
+Letters guessed: w
+******************
+Letters guessed: d
+******************
+Letters guessed: f
+******************
+Letters guessed: t
+******************
+Letters guessed: e
+******************
+Letters guessed: w
+******************
+Letters guessed: d
+******************
+Letters guessed: s
+******************
+Letters guessed: a
+******************
+Letters guessed: k
+******************
+Letters guessed: o
+******************
+Letters guessed: l
+******************
+Letters guessed: l
+******************
+Letters guessed: p
+******************
+Letters guessed: a
+******************
+Letters guessed: n
+******************
+Letters guessed: g
+******************
+Letters guessed: e
+******************
+Letters guessed: a
+******************
+Letters guessed: a
+******************
+Letters guessed: a
+******************
+Letters guessed: b
+******************
+Letters guessed: a
+******************
+Letters guessed: c
+******************
+Letters guessed: k
+******************
+Letters guessed: h
+******************
+Letters guessed: o
+******************
+Letters guessed: e
+******************
+Letters guessed: c
+******************
+Letters guessed: p
+******************
+Letters guessed: m
+******************
+Letters guessed: o
+******************
+Letters guessed: n
+******************
+Letters guessed: g
+******************
+Letters guessed: o
+******************
+Letters guessed: l
+******************
+Letters guessed: o
+******************
+Letters guessed: i
+******************
+Letters guessed: a
+******************
+Letters guessed: b
+******************
+Letters guessed: u
+******************
+Letters guessed: l
+******************
+Letters guessed: k
+******************
+Letters guessed: y
+******************
+Letters guessed: d
+******************
+Letters guessed: a
+******************
+Letters guessed: w
+******************
+Letters guessed: e
+******************
+Letters guessed: g
+******************
+Letters guessed: j
+******************
+Letters guessed: k
+******************
+Letters guessed: l
+******************
+Letters guessed: m
+******************
+Letters guessed: i
+******************
+Letters guessed: p
+******************
+Letters guessed: q
+******************
+Letters guessed: m
+******************
+Letters guessed: m
+******************
+Letters guessed: l
+******************
+Letters guessed: e

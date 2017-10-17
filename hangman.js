@@ -10,20 +10,21 @@ var blankRandomWord;
 var guesses;
 var lettersGuessed;
 
-console.log(randomWord);
 
+// function to generate new word
 function newWord() {
-  blankRandomWord = letterNew.displayBlanks;
+  console.log(randomWord);
+  blankRandomWord = letterNew.displayBlanks();
   // letterNew.displayBlanks;
   // letterMethods.displayBlanks();
   lettersGuessed = [];
   guesses = 10;
 }
 
-
+// function to handler user input
 function userGuess() {
 
-  console.log(blankRandomWord);
+  // console.log("blankRandomWord: " + blankRandomWord);
 
   inquirer.prompt(
     {
@@ -36,59 +37,71 @@ function userGuess() {
 
   function letterGuessCallback (answers) {
 
-    var userGuess = answers.letter.toLowerCase();
-    var isLetter = letterNew.checkIfLetter(userGuess);
+    var userLetterGuess = answers.letter.toLowerCase();
+    var isLetter = letterNew.checkIfLetter(userLetterGuess);
     var correct = false;
 
-    console.log(isLetter);
+    // console.log(isLetter);
     
-    console.log(answers.letter);
+    // console.log("answers.letter: " + answers.letter);
 
     if (isLetter) {
       
       for (var i = 0; i < randomWord.length; i++) {
-        if (userGuess == randomWord[i]) {
-          console.log("Yeeeeeeeeeehaw!!");
-          blankRandomWord = letterNew.swapLetter(blankRandomWord, i, userGuess);
+        if (userLetterGuess == randomWord[i]) {
+          console.log("Corecto!!");
+          lettersGuessed.push(userLetterGuess);
+          blankRandomWord = letterNew.swapLetter(blankRandomWord, i, userLetterGuess);
           correct = true;
+          // console.log("Letters guessed: " + lettersGuessed);
         }
       }
+
+      console.log(blankRandomWord);
     
-      if (!correct) {
+      if (!correct && !letterNew.inArray(userLetterGuess, lettersGuessed)) {
         console.log("Sorry, you're a bad guesser.");
-        console.log("You have " + guesses + " guesses remaining.");
-        console.log(lettersGuessed);
+        lettersGuessed.push(userLetterGuess);
         guesses--;
+        console.log("You have " + guesses + " guesses remaining.");
+        // console.log("Letters guessed: " + lettersGuessed);
       }
+
+      console.log("Letters guessed: " + lettersGuessed);
+
+
+      // if (lettersGuessed.indexOf(userLetterGuess) != -1) {
+      //   console.log("You already guessed that one!");
+      // }
 
       if(blankRandomWord.indexOf("_") === -1) {
 				console.log("You won!");
 				console.log("The word was " + randomWord + "!");
 				playAgain();
-			} else if(guesses == 0){
+      } 
+      else if(guesses == 0){
 				console.log("You have no more guesses!");
 				console.log("The word was " + randomWord + "!");
 				playAgain();
-			} else {
+      } 
+      else {
 				userGuess();
 			}
 
-      var logGuess =
-      "\n******************\nLetters guessed: " + answers.letter;
+      // var logGuess =
+      // "\n******************\nLetters guessed: " + answers.letter;
     
-      lettersGuessed.push(answers.letter);
+      // lettersGuessed.push(answers.letter);
     
-      fs.appendFile("guessLog.txt", logGuess, function(error) {
+      // fs.appendFile("guessLog.txt", logGuess, function(error) {
+      //   if (error) {
+      //     return console.log(error);
+      //   }
+      //   else {
+      //   console.log("guessLog.txt was updated!");
+      //   }
       
-        if (error) {
-          return console.log(error);
-        }
-    
-        else {
-        console.log("guessLog.txt was updated!");
-        }
-      
-      });
+      // });
     
     }
 
@@ -97,15 +110,13 @@ function userGuess() {
       userGuess();
     }
 
-    if (lettersGuessed.indexOf(userGuess) != -1) {
-      console.log("You already guessed that one!");
-    }
+
     
   }
 
 }
 
-
+// function to prompt player to play again or quit
 function playAgain() {
   inquirer.prompt([
     {
