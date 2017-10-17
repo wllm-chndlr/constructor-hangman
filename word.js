@@ -1,5 +1,3 @@
-
-
 var wordArray = [];
 
 var Word = function(word) {
@@ -17,11 +15,6 @@ var pangea = new Word("pangea");
 var bulky = new Word("bulky");
 var turnstile = new Word("turnstile");
 var mongolia = new Word("mongolia");
-
-
-// chicken.push();
-// backhoe.push();
-// lollapalooza.push();
 
 var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 

@@ -1,0 +1,19 @@
+
+******************
+Letters guessed: n
+******************
+Letters guessed: g
+******************
+Letters guessed: t
+******************
+Letters guessed: j
+******************
+Letters guessed: p
+******************
+Letters guessed: k
+******************
+Letters guessed: n
+******************
+Letters guessed: k
+******************
+Letters guessed: d
