@@ -3,14 +3,18 @@ var letterMethods = require('./Letter.js');
 var randomWord = require("./Word.js");
 var fs = require("fs");
 
+var letterNew = letterMethods.letterMethods;	
+
 var randomWord;
 var blankRandomWord; 
 var guesses;
 var lettersGuessed;
 
+console.log(randomWord);
 
 function newWord() {
-  blankRandomWord = letterMethods.displayBlanks;
+  blankRandomWord = letterNew.displayBlanks;
+  // letterNew.displayBlanks;
   // letterMethods.displayBlanks();
   lettersGuessed = [];
   guesses = 10;
@@ -33,15 +37,19 @@ function userGuess() {
   function letterGuessCallback (answers) {
 
     var userGuess = answers.letter.toLowerCase();
-    var isLetter = letterMethods.checkIfLetter(userGuess);
-		var correct = false;
+    var isLetter = letterNew.checkIfLetter(userGuess);
+    var correct = false;
+
+    console.log(isLetter);
+    
+    console.log(answers.letter);
 
     if (isLetter) {
       
       for (var i = 0; i < randomWord.length; i++) {
-        if (userGuess === randomWord[i]) {
+        if (userGuess == randomWord[i]) {
           console.log("Yeeeeeeeeeehaw!!");
-          blankRandomWord = letterMethods.swapLetter(blankRandomWord, i * 2, userGuess);
+          blankRandomWord = letterNew.swapLetter(blankRandomWord, i, userGuess);
           correct = true;
         }
       }
@@ -52,6 +60,18 @@ function userGuess() {
         console.log(lettersGuessed);
         guesses--;
       }
+
+      if(blankRandomWord.indexOf("_") === -1) {
+				console.log("You won!");
+				console.log("The word was " + randomWord + "!");
+				playAgain();
+			} else if(guesses == 0){
+				console.log("You have no more guesses!");
+				console.log("The word was " + randomWord + "!");
+				playAgain();
+			} else {
+				userGuess();
+			}
 
       var logGuess =
       "\n******************\nLetters guessed: " + answers.letter;
@@ -77,8 +97,6 @@ function userGuess() {
       userGuess();
     }
 
-
-
     if (lettersGuessed.indexOf(userGuess) != -1) {
       console.log("You already guessed that one!");
     }
@@ -89,7 +107,21 @@ function userGuess() {
 
 
 function playAgain() {
-
+  inquirer.prompt([
+    {
+      type: "confirm",
+      message: "Do you want to play again?",
+      name: "playAgain"
+    }
+    ]).then(function (user) {
+      if(user.playAgain) {
+        console.log("");
+        newWord();
+        userGuess();
+      } else {
+        console.log("Adios, muchacho!");
+      }
+    });
 }
 
 

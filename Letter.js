@@ -1,13 +1,12 @@
 var randomWord = require("./Word.js");
 
-var blankCurrentWord = "";
+var blankRandomWord = "";
 
 function Letters() {
 
   // checks to make sure user guess is a letter
   this.checkIfLetter = function(letter) {
-    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     for (var i = 0; i < abc.length; i++) {
       if(letter == abc[i]){
         return true;
@@ -19,7 +18,7 @@ function Letters() {
   // displays blanks for letters in word
   this.displayBlanks = function() {
     for (var i = 0; i < randomWord.length; i++) {
-      blankCurrentWord += '_ ';
+      blankRandomWord += '_ ';
     };
   }
 

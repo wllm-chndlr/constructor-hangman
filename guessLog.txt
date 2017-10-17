@@ -17,3 +17,13 @@ Letters guessed: n
 Letters guessed: k
 ******************
 Letters guessed: d
+******************
+Letters guessed: d
+******************
+Letters guessed: r
+******************
+Letters guessed: k
+******************
+Letters guessed: q
+******************
+Letters guessed: f

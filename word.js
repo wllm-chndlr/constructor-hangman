@@ -1,5 +1,6 @@
 var wordArray = [];
 
+// create a Word constructor
 var Word = function(word) {
   this.word = word;
   wordArray.push(this.word);
