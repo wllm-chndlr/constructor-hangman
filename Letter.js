@@ -1,9 +1,4 @@
-var randomWord = require("./Word.js");
-
-var blankRandomWord = "";
-
-
-function Letters() {
+function Letter() {
 
   // checks to make sure user guess is a letter
   this.checkIfLetter = function(letter) {
@@ -16,22 +11,6 @@ function Letters() {
     return false;
   }
 
-  // displays blanks for letters in word
-  this.displayBlanks = function() {
-    for (var i = 0; i < randomWord.length; i++) {
-      blankRandomWord += '_ ';
-    };
-    return blankRandomWord;
-  }
-
-  // swaps the letter in the blank word
-  this.swapLetter = function(str, i, userLetterGuess){
-    // console.log("str: " + str);
-    var swappedLetter = str.substr(0, i * 2) + userLetterGuess + str.substr(i * 2 + 1);
-    // console.log("swappedLetter: " + swappedLetter);
-    return swappedLetter;
-  }
-
   // checks to see if letter is in array (checks if letter has been guessed already)
   this.inArray = function(letter, array) {
     for (var j = 0; j < array.length; j++) {
@@ -42,10 +21,11 @@ function Letters() {
     return false;
   }
 
+  this.toLowerCase = function(letter) {
+    var lowerLetter = letter.toLowerCase();
+    return lowerLetter;
+  }
+
 }
 
-var letterMethods = new Letters();
-
-module.exports = {
-  letterMethods: letterMethods
-}
+module.exports = Letter;

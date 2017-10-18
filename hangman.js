@@ -1,30 +1,29 @@
 var inquirer = require('inquirer');
-var letterMethods = require('./Letter.js');
-var randomWord = require("./Word.js");
+var Word = require("./Word.js");
 var fs = require("fs");
-
-var letterNew = letterMethods.letterMethods;	
 
 var randomWord;
 var blankRandomWord; 
 var guesses;
 var lettersGuessed;
 
+var wordArray = ['pingpong', 'tennis', 'softball', 'lacrosse', 'basketball', 'cricket', 'soccer', 'football', 'badminton', 'fencing', 'squash'];
+
 
 // function to generate new word
-function newWord() {
-  console.log(randomWord);
-  blankRandomWord = letterNew.displayBlanks();
-  // letterNew.displayBlanks;
-  // letterMethods.displayBlanks();
+
+
+// function to handle user input and game play
+function playGame() {
+
   lettersGuessed = [];
   guesses = 10;
-}
 
-// function to handler user input
-function userGuess() {
+  var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+  console.log("randomWord: " + randomWord);
 
-  // console.log("blankRandomWord: " + blankRandomWord);
+  var blankRandomWord = new Word(randomWord);
+  console.log("blankRandomWord: " + blankRandomWord.displayBlanks());
 
   inquirer.prompt(
     {
@@ -37,81 +36,51 @@ function userGuess() {
 
   function letterGuessCallback (answers) {
 
-    var userLetterGuess = answers.letter.toLowerCase();
-    var isLetter = letterNew.checkIfLetter(userLetterGuess);
+    // var userGuess = answers.letter.toLowerCase();
+    // var isLetter = letterNew.checkIfLetter(userLetterGuess);
+
+    var userGuess = answers.letter;
     var correct = false;
 
-    // console.log(isLetter);
-    
-    // console.log("answers.letter: " + answers.letter);
-
-    if (isLetter) {
+    console.log(randomWord);
+    console.log(blankRandomWord.word);
       
-      for (var i = 0; i < randomWord.length; i++) {
-        if (userLetterGuess == randomWord[i]) {
-          console.log("Corecto!!");
-          lettersGuessed.push(userLetterGuess);
-          blankRandomWord = letterNew.swapLetter(blankRandomWord, i, userLetterGuess);
-          correct = true;
-          // console.log("Letters guessed: " + lettersGuessed);
-        }
+    for (var i = 0; i < randomWord.length; i++) {
+      if (userGuess == randomWord[i]) {
+        console.log("Correcto!!");
+        lettersGuessed.push(userGuess);
+        blankRandomWord = blankRandomWord.swapLetter();
+        correct = true;
       }
-
-      console.log(blankRandomWord);
-    
-      if (!correct && !letterNew.inArray(userLetterGuess, lettersGuessed)) {
-        console.log("Sorry, you're a bad guesser.");
-        lettersGuessed.push(userLetterGuess);
-        guesses--;
-        console.log("You have " + guesses + " guesses remaining.");
-        // console.log("Letters guessed: " + lettersGuessed);
-      }
-
-      console.log("Letters guessed: " + lettersGuessed);
-
-
-      // if (lettersGuessed.indexOf(userLetterGuess) != -1) {
-      //   console.log("You already guessed that one!");
-      // }
-
-      if(blankRandomWord.indexOf("_") === -1) {
-				console.log("You won!");
-				console.log("The word was " + randomWord + "!");
-				playAgain();
-      } 
-      else if(guesses == 0){
-				console.log("You have no more guesses!");
-				console.log("The word was " + randomWord + "!");
-				playAgain();
-      } 
-      else {
-				userGuess();
-			}
-
-      // var logGuess =
-      // "\n******************\nLetters guessed: " + answers.letter;
-    
-      // lettersGuessed.push(answers.letter);
-    
-      // fs.appendFile("guessLog.txt", logGuess, function(error) {
-      //   if (error) {
-      //     return console.log(error);
-      //   }
-      //   else {
-      //   console.log("guessLog.txt was updated!");
-      //   }
-      
-      // });
-    
+    }
+  
+    if (!correct) {
+      console.log("Sorry, you're a bad guesser.");
+      lettersGuessed.push(userGuess);
+      guesses--;
     }
 
+    console.log("Letters guessed: " + lettersGuessed);
+    console.log("You have " + guesses + " guesses remaining.");
+
+    // if (lettersGuessed.indexOf(userGuess) != -1) {
+    //   console.log("You already guessed that one!");
+    // }
+
+    if (blankRandomWord.indexOf("_") === -1) {
+      console.log("You won!");
+      console.log("The word was " + randomWord + "!");
+      playAgain();
+    } 
+    else if (guesses == 0){
+      console.log("You have no more guesses!");
+      console.log("The word was " + randomWord + "!");
+      playAgain();
+    } 
     else {
-      console.log("That wasn't a letter. Please try again.");
-      userGuess();
+      playGame();
     }
 
-
-    
   }
 
 }
@@ -127,8 +96,8 @@ function playAgain() {
     ]).then(function (user) {
       if(user.playAgain) {
         console.log("");
-        newWord();
-        userGuess();
+        // newWord();
+        playGame();
       } else {
         console.log("Adios, muchacho!");
       }
@@ -136,5 +105,20 @@ function playAgain() {
 }
 
 
-newWord();
-userGuess();
+// newWord();
+playGame();
+
+
+
+// var logGuess =
+// "\n******************\nLetters guessed: " + answers.letter;
+  
+// fs.appendFile("guessLog.txt", logGuess, function(error) {
+//   if (error) {
+//     return console.log(error);
+//   }
+//   else {
+//   console.log("guessLog.txt was updated!");
+//   }
+
+// });

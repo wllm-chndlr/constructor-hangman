@@ -1,22 +1,35 @@
-var wordArray = [];
+var Letter = require("./Letter.js");
 
-// create a Word constructor
+// word constructor
 var Word = function(word) {
+
   this.word = word;
-  wordArray.push(this.word);
+
+  // displays blanks for letters in word
+  this.displayBlanks = function() {
+    var blankRandomWord = "";
+    for (var i = 0; i < word.length; i++) {
+      blankRandomWord += '_ ';
+    };
+    return blankRandomWord;
+  }
+
+  // swaps the letter in the blank word
+  this.swapLetter = function(word, i, userGuess){
+    var blankRandomWord = "";
+    // var isLetter = Letter.checkIfLetter();
+    // if (isLetter) {
+      // console.log("str: " + str);
+      var swappedLetter = word.substr(0, i * 2) + userGuess + word.substr(i * 2 + 1);
+      console.log(swappedLetter);
+      return swappedLetter;
+    // }
+    // else {
+    //   console.log("Invalid input. Please try again.");
+    //   playGame();
+    // }
+  }
+
 }
-
-// Word.prototype.push = function() {
-//   wordArray.push(this.word);
-// };
-
-var chicken = new Word("chicken");
-var backhoe = new Word("backhoe");
-var pangea = new Word("pangea");
-var bulky = new Word("bulky");
-var turnstile = new Word("turnstile");
-var mongolia = new Word("mongolia");
-
-var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
-
-module.exports = randomWord;
+ 
+module.exports = Word;
