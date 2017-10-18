@@ -10,9 +10,6 @@ var lettersGuessed;
 var wordArray = ['pingpong', 'tennis', 'softball', 'lacrosse', 'basketball', 'cricket', 'soccer', 'football', 'badminton', 'fencing', 'squash'];
 
 
-// function to generate new word
-
-
 // function to handle user input and game play
 function playGame() {
 
@@ -42,14 +39,14 @@ function playGame() {
     var userGuess = answers.letter;
     var correct = false;
 
-    console.log(randomWord);
-    console.log(blankRandomWord.word);
+    // console.log(randomWord);
+    // console.log(blankRandomWord);
       
     for (var i = 0; i < randomWord.length; i++) {
       if (userGuess == randomWord[i]) {
-        console.log("Correcto!!");
+        blankRandomWord = Word.swapLetter(blankRandomWord, i, userGuess);
         lettersGuessed.push(userGuess);
-        blankRandomWord = blankRandomWord.swapLetter();
+        console.log("Correct!!");
         correct = true;
       }
     }
@@ -62,10 +59,6 @@ function playGame() {
 
     console.log("Letters guessed: " + lettersGuessed);
     console.log("You have " + guesses + " guesses remaining.");
-
-    // if (lettersGuessed.indexOf(userGuess) != -1) {
-    //   console.log("You already guessed that one!");
-    // }
 
     if (blankRandomWord.indexOf("_") === -1) {
       console.log("You won!");
@@ -105,9 +98,14 @@ function playAgain() {
 }
 
 
-// newWord();
 playGame();
 
+
+// newWord();
+
+// if (lettersGuessed.indexOf(userGuess) != -1) {
+//   console.log("You already guessed that one!");
+// }
 
 
 // var logGuess =

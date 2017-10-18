@@ -15,19 +15,18 @@ var Word = function(word) {
   }
 
   // swaps the letter in the blank word
-  this.swapLetter = function(word, i, userGuess){
-    var blankRandomWord = "";
-    // var isLetter = Letter.checkIfLetter();
+  this.swapLetter = function(string, i, userGuess){
+    console.log("String: " + string);
+    var swappedLetter = string.substr(0, i * 2) + userGuess + string.substr(i * 2 + 1);
+    return swappedLetter;
+
     // if (isLetter) {
-      // console.log("str: " + str);
-      var swappedLetter = word.substr(0, i * 2) + userGuess + word.substr(i * 2 + 1);
-      console.log(swappedLetter);
-      return swappedLetter;
     // }
     // else {
     //   console.log("Invalid input. Please try again.");
     //   playGame();
     // }
+    
   }
 
 }
