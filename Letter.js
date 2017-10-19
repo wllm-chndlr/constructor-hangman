@@ -29,3 +29,8 @@ function Letter() {
 }
 
 module.exports = Letter;
+
+
+
+// var userGuess = answers.letter.toLowerCase();
+// var isLetter = letterNew.checkIfLetter(userLetterGuess);

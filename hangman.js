@@ -1,6 +1,5 @@
 var inquirer = require('inquirer');
 var Word = require("./Word.js");
-var fs = require("fs");
 
 var randomWord;
 var blankRandomWord; 
@@ -21,6 +20,8 @@ function playGame() {
 
   var blankRandomWord = new Word(randomWord);
   console.log("blankRandomWord: " + blankRandomWord.displayBlanks());
+  var ongoingBlanks = blankRandomWord.displayBlanks();
+  console.log("ongoingBlanks: " + ongoingBlanks);
 
   inquirer.prompt(
     {
@@ -33,26 +34,23 @@ function playGame() {
 
   function letterGuessCallback (answers) {
 
-    // var userGuess = answers.letter.toLowerCase();
-    // var isLetter = letterNew.checkIfLetter(userLetterGuess);
-
     var userGuess = answers.letter;
     var correct = false;
 
-    // console.log(randomWord);
-    // console.log(blankRandomWord);
-      
     for (var i = 0; i < randomWord.length; i++) {
       if (userGuess == randomWord[i]) {
-        blankRandomWord = Word.swapLetter(blankRandomWord, i, userGuess);
+        console.log("attempting to swap");
+        // console.log(blankRandomWord.word);
+        // console.log(blankRandomWord.displayBlanks());
+        console.log(blankRandomWord.swapLetter((blankRandomWord.displayBlanks()), i, userGuess));
         lettersGuessed.push(userGuess);
-        console.log("Correct!!");
+        console.log("Zang!");
         correct = true;
       }
     }
   
     if (!correct) {
-      console.log("Sorry, you're a bad guesser.");
+      console.log("Blarf!");
       lettersGuessed.push(userGuess);
       guesses--;
     }
@@ -60,7 +58,7 @@ function playGame() {
     console.log("Letters guessed: " + lettersGuessed);
     console.log("You have " + guesses + " guesses remaining.");
 
-    if (blankRandomWord.indexOf("_") === -1) {
+    if (blankRandomWord.word.indexOf("_") === -1) {
       console.log("You won!");
       console.log("The word was " + randomWord + "!");
       playAgain();
@@ -89,7 +87,6 @@ function playAgain() {
     ]).then(function (user) {
       if(user.playAgain) {
         console.log("");
-        // newWord();
         playGame();
       } else {
         console.log("Adios, muchacho!");
@@ -101,22 +98,6 @@ function playAgain() {
 playGame();
 
 
-// newWord();
-
 // if (lettersGuessed.indexOf(userGuess) != -1) {
 //   console.log("You already guessed that one!");
 // }
-
-
-// var logGuess =
-// "\n******************\nLetters guessed: " + answers.letter;
-  
-// fs.appendFile("guessLog.txt", logGuess, function(error) {
-//   if (error) {
-//     return console.log(error);
-//   }
-//   else {
-//   console.log("guessLog.txt was updated!");
-//   }
-
-// });
