@@ -21,6 +21,7 @@ function Letter() {
     return false;
   }
 
+  // updates letter input to lower case
   this.toLowerCase = function(letter) {
     var lowerLetter = letter.toLowerCase();
     return lowerLetter;
@@ -29,8 +30,3 @@ function Letter() {
 }
 
 module.exports = Letter;
-
-
-
-// var userGuess = answers.letter.toLowerCase();
-// var isLetter = letterNew.checkIfLetter(userLetterGuess);
